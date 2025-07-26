@@ -4,8 +4,9 @@ async function deployTokenFixture () {
 
   const accounts = await ethers.getSigners()
   const deployer = accounts[0]
+  const receiver = accounts[1]
 
-  return { token, deployer }
+  return { token, deployer, receiver }
 }
 
 module.exports = {
