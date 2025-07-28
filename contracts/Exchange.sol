@@ -39,7 +39,7 @@ contract Exchange {
       userTotalTokenBalance[_token][msg.sender]
     );
 
-    // Transfer tokens to exchange 
+    // Transfer tokens to exchange
     require(
       Token(_token).transferFrom(msg.sender, address(this), _amount),
       "Exchange: Token transfer failed"

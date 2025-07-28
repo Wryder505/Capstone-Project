@@ -1,12 +1,15 @@
 const { ethers } = require("hardhat")
 
 async function deployExchangeFixture() {
+  // Get contracts
   const Exchange = await ethers.getContractFactory("Exchange")
   const Token = await ethers.getContractFactory("Token")
 
+  // Deploy token contracts
   const token0 = await Token.deploy("NMZia Token", "ZIA", "1000000")
   const token1 = await Token.deploy("Mock Dai", "mDAI", "1000000")
 
+  // Get accounts
   const accounts = await ethers.getSigners()
   const deployer = accounts[0]
   const feeAccount = accounts[1] // fee account
@@ -21,6 +24,7 @@ async function deployExchangeFixture() {
   // Transfer 100 token1 to user2
   await (await token1.connect(deployer).transfer(user2.address, AMOUNT)).wait()
 
+  // Set the fee and deploy exchange
   const FEE_PERCENT = 10
   const exchange = await Exchange.deploy(feeAccount, FEE_PERCENT)
 
