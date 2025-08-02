@@ -2,8 +2,9 @@
 pragma solidity 0.8.28;
 
 import {Token} from "./Token.sol";
+import {FlashLoanProvider} from "./FlashLoanProvider.sol";
 
-contract Exchange {
+contract Exchange is FlashLoanProvider {
     // State variables
     address public feeAccount;
     uint256 public feePercent;
